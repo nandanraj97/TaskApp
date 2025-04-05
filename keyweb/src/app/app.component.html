@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Remote Keyboard - User {{ user }}</h2>
+  <button (click)="acquireControl()" [disabled]="hasControl">
+    {{ hasControl ? 'You Have Control' : 'Acquire Control' }}
+  </button>
+
+  <div class="grid">
+    <div
+      *ngFor="let key of keys; index as i"
+      [style.background]="getColor(i)"
+      (click)="toggleKey(i)"
+      class="key"
+    >
+      {{ i + 1 }}
+    </div>
+  </div>
+</div>
