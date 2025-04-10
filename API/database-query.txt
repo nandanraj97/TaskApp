@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS KeyBoardDB;
+USE KeyBoardDB;
+
+
+CREATE TABLE IF NOT EXISTS keystate (
+  id INT PRIMARY KEY,
+  state INT NULL
+);
+
+CREATE TABLE IF NOT EXISTS control (
+  id INT PRIMARY KEY,
+  user INT,
+  acquiredAt BIGINT
+);
+
+-- Insert 10 keys
+INSERT INTO keystate (id, state)
+VALUES 
+(0, NULL), (1, NULL), (2, NULL), (3, NULL), (4, NULL),
+(5, NULL), (6, NULL), (7, NULL), (8, NULL), (9, NULL)
+ON DUPLICATE KEY UPDATE state = VALUES(state);
+
+-- Insert initial control row
+INSERT INTO control (id, user, acquiredAt)
+VALUES (1, NULL, NULL)
+ON DUPLICATE KEY UPDATE user = VALUES(user), acquiredAt = VALUES(acquiredAt);
